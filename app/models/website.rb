@@ -8,4 +8,8 @@ class Website < ActiveRecord::Base
   # ------------------ Validations -------------------------
   validates_presence_of :url, :name, :description
   
+  
+  def embed_code
+    "<script type=\"text/javascript\">document.write('<iframe src=\"#{CONFIG['site_url']}/websites/#{self.id}/widget\" style=\"width:1000px; height:1000px;\"></iframe>');</script>"
+  end
 end

@@ -8,7 +8,7 @@
 
   - form_for @person_session do |f|
     - field_set_tag "Sign In" do
-
+      = f.error_messages
       %dt= f.label :email
       %dd= f.text_field :email
       

@@ -1,0 +1,9 @@
+- content_for :title do
+  = link_to @website.name, website_path(@website)
+  \:
+  = @website_person.name
+
+
+- content_for :main do
+  %h5 Slaps
+  = @website_person.slap_total

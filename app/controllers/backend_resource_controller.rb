@@ -5,10 +5,6 @@ class BackendResourceController < ApplicationController
   before_filter :login_required
   
   private
-
-    def logged_in?
-      current_user.present? && !current_user.new_record?
-    end
     
     def login_required
       unless logged_in?

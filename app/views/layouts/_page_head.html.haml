@@ -1,0 +1,11 @@
+#page_head.container
+  #logo= link_to(image_tag("logo.gif"), root_path)
+  #login_links
+    - if logged_in?
+      = link_to "Dashboard", dashboard_path
+      \|
+      = link_to "Logout", logout_path
+    - else
+      = link_to "Sign In", login_path
+      \|
+      = link_to "Sign Up", signup_path

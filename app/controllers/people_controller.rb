@@ -1,4 +1,7 @@
 class PeopleController < BackendResourceController
+  
+  before_filter :set_person, :except => [:index, :new, :create]
+  
   # GET /people
   # GET /people.xml
   def index
@@ -13,7 +16,6 @@ class PeopleController < BackendResourceController
   # GET /people/1
   # GET /people/1.xml
   def show
-    @person = Person.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -56,7 +58,6 @@ class PeopleController < BackendResourceController
   # PUT /people/1
   # PUT /people/1.xml
   def update
-    @person = Person.find(params[:id])
 
     respond_to do |format|
       if @person.update_attributes(params[:person])
@@ -72,7 +73,6 @@ class PeopleController < BackendResourceController
   # DELETE /people/1
   # DELETE /people/1.xml
   def destroy
-    @person = Person.find(params[:id])
     @person.destroy
 
     respond_to do |format|
@@ -80,4 +80,13 @@ class PeopleController < BackendResourceController
       format.xml  { head :ok }
     end
   end
+  
+  private
+    def set_person
+      begin
+        @person = Person.find(params[:id])
+      rescue
+        @person = current_user unless @person.present?
+      end
+    end
 end

@@ -1,23 +1,33 @@
+@import screen.sass
 
 !light_blue  = #f6fcfe
-
-
-.blue
-  :background-color = !light_blue
-  :color white
+!mid_blue = #C2E7E5
 
 img
   :border 0
-
-#header, #content, #footer
-  :clear both
-  :width 760px
-  :margin 0 auto
-  :display block
-  
-%span  
-  :clear both
-  :width 760px
   
 #logo
   :float left
+
+#page_head
+  :background     = !mid_blue
+  :margin-bottom 20px
+  #login_links
+    :float right
+    :padding = 10px
+    :color = white
+    :font-size = 15px
+    a
+      :color = white
+      :text-decoration none
+
+h1, h2, h3, h4, h5
+  :margin-bottom =  10px
+
+.block
+  :margin-bottom = 20px
+  
+h1
+  :display block
+  a
+    :display inline

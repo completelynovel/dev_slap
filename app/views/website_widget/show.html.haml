@@ -28,26 +28,26 @@
         = f.label :feedback, "Submit some feedback"
         = f.text_area :feedback
       
-      - @people.each do |person|
-        = f.hidden_field "people_slap_number[#{person.id}]", :value => 0, :id => "slapper_people_slap_number_#{person.id}"
+      - @website_people.each do |website_person|
+        = f.hidden_field "people_slap_number[#{website_person.id}]", :value => 0, :id => "slapper_people_slap_number_#{website_person.id}"
         
       = submit_tag("Slap")
 
 .spacer
 
 %ul#slapped
-  - @people.each do |person|
+  - @website_people.each do |website_person|
     %li
-      %span.slapped_name= person.name
+      %span.slapped_name= website_person.name
       %br
-      %span.slapped_role= person.role
+      %span.slapped_role= website_person.role
       .spacer
-      = link_to(image_tag("http://xtrmweb.com/wp-content/uploads/10-REALITY_SLAP_L.jpg"), "javascript:void(0);", :name => person.id, :class => :picture_to_slap)
-      = link_to(image_tag("http://unrepentantoldhippie.files.wordpress.com/2008/12/slap-logo1.jpg"), "javascript:void(0);", :name => person.id, :class => :slapped_picture)
+      = link_to(image_tag(website_person.normal_picture.url(:small)), "javascript:void(0);", :name => website_person.id, :class => :picture_to_slap)
+      = link_to(image_tag(website_person.slapped1_picture.url(:small)), "javascript:void(0);", :name => website_person.id, :class => :slapped_picture)
       %br
       %span.slapped_counter 0
       .spacer
-      %span.slapped_description= person.description
+      %span.slapped_description= website_person.description
       
       
   

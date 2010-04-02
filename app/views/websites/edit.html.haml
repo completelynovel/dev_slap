@@ -1,9 +1,7 @@
 - content_for :title do
-  %h1 Editing website
+  Editing website
   
 - content_for :main do
   = render 'form'
 
-  = link_to 'Show', @person
-  \|
-  = link_to 'Back', people_path
+  = link_to 'Back', @website

@@ -1,18 +1,18 @@
 
 - content_for :title do
-  %h1 Listing websites
+  Listing websites
 
 - content_for :main do
   %table
     %thead
       %tr
         %th Name
-        %th Role
+        %th URL
         %th
     %tbody
-      - @websites.each do |person|
+      - @websites.each do |website|
         %tr
-          %td= website.name
+          %td= link_to website.name, website_path(website)
           %td= website.url
           %td
             = link_to 'Show', website 

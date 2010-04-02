@@ -2,8 +2,14 @@
 %html
   = render :partial => "layouts/head"
   
-  = stylesheet_link_tag("style")
-  = javascript_include_tag("application")
-  
   %body
-    = yield
+    = render '/layouts/page_head'
+  
+    .container
+      %h1== #{yield :title}
+
+      = yield :page_head
+
+      = yield :main
+
+      = yield

@@ -16,7 +16,7 @@ class Websites::PeopleController < BackendResourceController
   # GET /websites/1
   # GET /websites/1.xml
   def show
-    @person = @website.website_people.find(params[:id])
+    @website_person = @website.website_people.find(params[:id])
 
     respond_to do |format|
       format.html 

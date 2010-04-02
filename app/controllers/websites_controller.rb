@@ -1,4 +1,7 @@
 class WebsitesController < BackendResourceController
+  
+  before_filter :set_website, :except => [:index, :new, :create]
+  
   # GET /websites
   # GET /websites.xml
   def index
@@ -13,7 +16,6 @@ class WebsitesController < BackendResourceController
   # GET /websites/1
   # GET /websites/1.xml
   def show
-    @website = Website.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -34,7 +36,6 @@ class WebsitesController < BackendResourceController
 
   # GET /websites/1/edit
   def edit
-    @website = Website.find(params[:id])
   end
 
   # POST /websites
@@ -56,7 +57,6 @@ class WebsitesController < BackendResourceController
   # PUT /websites/1
   # PUT /websites/1.xml
   def update
-    @website = Website.find(params[:id])
 
     respond_to do |format|
       if @website.update_attributes(params[:website])
@@ -72,12 +72,16 @@ class WebsitesController < BackendResourceController
   # DELETE /websites/1
   # DELETE /websites/1.xml
   def destroy
-    @website = Website.find(params[:id])
     @website.destroy
 
     respond_to do |format|
-      format.html { redirect_to(websites_url) }
+      format.html { redirect_to(dashboard_path) }
       format.xml  { head :ok }
     end
   end
+  
+  private
+    def set_website
+      @website = Website.find(params[:id])
+    end
 end

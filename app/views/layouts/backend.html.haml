@@ -1,7 +1,15 @@
-= yield :page_head
+!!! Strict
+%html
+  = render :partial => "layouts/head"
 
-= yield :title
+  %body
+    = render '/layouts/page_head'
+  
+    .container
+      %h1== #{link_to("Dashboard", dashboard_path)  }: #{yield :title}
 
-= yield :main
+      = yield :page_head
 
-= yield
+      = yield :main
+
+      = yield

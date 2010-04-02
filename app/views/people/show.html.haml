@@ -1,15 +1,24 @@
 
-- content_for :title do
-  %h1= @person.email
 
 - content_for :main do
-  %h5 Websites
-  %ul
-    - @person.websites.each do |website|
-      %li= link_to website.name, website_path(website)
+  .span-17
+    %h2 Websites
+    %table
+      %thead
+        %tr
+          %th Name
+          %th URL
+          %th
+      %tbody
+        - @person.websites.each do |website|
+          %tr
+            %td= link_to website.name, website_path(website)
+            %td= website.url
+            %td
+              = link_to 'Edit', edit_website_path(website)
+              = link_to 'Destroy', website_path(website), :confirm => 'Are you sure?', :method => :delete
   
-  
-  %p
-    = link_to 'Edit', edit_person_path(@person)
-    \|
-    = link_to 'Back', people_path
+  .span-7.last
+    %h3 Settings
+    %p= @person.email
+    %p= link_to 'Edit My Login Details', edit_person_path(@person)

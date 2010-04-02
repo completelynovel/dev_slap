@@ -4,6 +4,10 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   private
+    helper_method :logged_in?
+    def logged_in?
+      current_user.present? && !current_user.new_record?
+    end
     
     def store_current_location
       session[:return_to] = request.fullpath
