@@ -1,4 +1,4 @@
-class WidgetsController < ApplicationController
+class WebsiteWidgetController < ApplicationController
   
   layout 'widget'
 
@@ -7,13 +7,13 @@ class WidgetsController < ApplicationController
   before_filter :set_slapper_count
   
   def show
-    logger.debug "$$$ #{session.inspect}"
+    
   end
   
   private
   
     def set_website
-      @website = Website.find(params[:id])
+      @website = Website.find(params[:website_id])
     end
     
     def set_people

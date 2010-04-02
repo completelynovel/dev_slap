@@ -1,11 +1,23 @@
 jQuery(document).ready(function(){
   
+  $.postJSON = function(url, data, callback){
+    if ($.isFunction(data)){
+  		callback = data;
+  		data = '';
+  	}
+
+  	$.post(url, data + '&format=json', function(json){
+  	  callback(eval('('+ json +')'));
+    });
+  };
+  
   game = {
     start:   $('#slapping_start'),
     timer:   $('#slapping_timer'),
     info:    $('#slapping_info'),
     end:     $('#slapping_end'),
-    slapped: $('#slapped')
+    slapped: $('#slapped'),
+    form:    $('#new_slapper') 
   }
   
   game.start.click(function(){    
@@ -27,7 +39,9 @@ jQuery(document).ready(function(){
       var slapped_picture = slapped.find('.slapped_picture');
       
       // Increment slap counter
-      counter.text(parseInt(counter.text()) + 1);
+      count = parseInt(counter.text()) + 1;
+      $('#slapper_people_slap_number_' + slapped_picture.attr('name')).val(count);
+      counter.text(count);
       
       // Show / hide slapped picture
       self.hide();
@@ -46,6 +60,14 @@ jQuery(document).ready(function(){
     game.info.hide();
     
     game.end.show();
+    
+    game.form.submit(function(e){
+      e.preventDefault();
+      
+      $.postJSON(game.form.attr('action'), game.form.serialize(), function(data){
+        console.log(data);
+      });
+    });
   };
   
   startTimer = function(){

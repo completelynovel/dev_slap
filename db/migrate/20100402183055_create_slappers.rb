@@ -3,7 +3,7 @@ class CreateSlappers < ActiveRecord::Migration
     create_table :slappers do |t|
       t.string :name
       t.string :email
-      t.boolean :apology
+      t.boolean :apology, :default => true
       t.text :feedback
       t.integer :website_id
 

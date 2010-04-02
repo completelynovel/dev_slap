@@ -2,6 +2,8 @@
 DevSlap::Application.routes.draw do |map|
   resources :websites do
     resources :people
+    resource  :widget, :only => :show, :controller => "website_widget"
+    resources :slappers, :only => :create, :controller => "website_slappers"
   end
 
   resources :people
@@ -13,10 +15,6 @@ DevSlap::Application.routes.draw do |map|
   map.dashboard "dashboard", :controller => "dashboard", :action => "show"
   
   resources :person_sessions
-  
-  resources :widgets, :only => :show do
-    resources :votes, :controller => "widget_votes", :only => :create
-  end
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
