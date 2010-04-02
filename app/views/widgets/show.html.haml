@@ -15,8 +15,8 @@
     %br
     Please now submit your slap score!
     %br
-  -#widget_votes_path(@widget)
-  - form_tag "temp", :method => :post do
+    
+  - form_tag widget_votes_path(@website), :method => :post do
     %fieldset
       %p
         = label_tag :apology, "Get an apology"

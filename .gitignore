@@ -18,3 +18,4 @@ doc/*
 .DS_Store
 ._*
 Thumbs.db
+test/*

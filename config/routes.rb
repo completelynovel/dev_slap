@@ -15,7 +15,7 @@ DevSlap::Application.routes.draw do |map|
   resources :person_sessions
   
   resources :widgets, :only => :show do
-    resources :votes, :controller => "widget_votes"
+    resources :votes, :controller => "widget_votes", :only => :create
   end
   
   # The priority is based upon order of creation:
