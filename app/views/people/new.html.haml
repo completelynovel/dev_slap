@@ -2,7 +2,7 @@
   %h1 New person
   
 - content_for :main do
-  = render 'form'
+  = render 'form', :locals => {:f => f}
 
   = link_to 'Show', @person
   \|

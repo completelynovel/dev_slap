@@ -15,8 +15,10 @@
   
   %h5 Developers
   %ul
-    - @website.people.each do |person|
-      %li= link_to person.name, person_path(person)
+    - @website.website_people.each do |website_person|
+      %li
+        = link_to website_person.name, website_person_path(@website, website_person)
+        = link_to "edit", edit_website_person_path(@website, website_person)
       
   = link_to "Add developer", new_website_person_path(@website)
   

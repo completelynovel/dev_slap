@@ -1,10 +1,9 @@
-= form_for @person, :html => { :multipart => true } do |f|
+
+= form_for @person do |f|
   = f.error_messages
-  
+
   %dl
     - field_set_tag "Edit Person Profile" do
-      %dt= f.label :name
-      %dd= f.text_field :name
       
       %dt= f.label :email
       %dd= f.text_field :email
@@ -14,22 +13,5 @@
       
       %dt= f.label :password_confirmation
       %dd= f.password_field :password_confirmation
-      
-      
-      %dt= f.label :description
-      %dd= f.text_area :description
-      
-      %dt= f.label :role
-      %dd= f.select :role, options_for_select(["developer", "graphic designer", "copy writer"], @person.role)
-      
-      %dt
-        = f.label :normal_picture
-        = image_tag(@person.normal_picture.url(:small))
-      %dd= f.file_field :normal_picture
-      
-      %dt
-        = f.label :slapped1_picture
-        = image_tag(@person.slapped1_picture.url(:small))
-      %dd= f.file_field :slapped1_picture
     
   .actions= f.submit

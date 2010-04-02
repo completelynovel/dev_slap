@@ -1,0 +1,31 @@
+= error_messages_for :person, :website_person
+%dl
+  - field_set_tag "Edit Person Login" do
+    - fields_for @person do |person|
+  
+      %dt= person.label :email
+      %dd= person.text_field :email
+    
+  
+  - field_set_tag "Edit Person Profile" do
+  
+    %dt= f.label :name
+    %dd= f.text_field :name
+    
+    %dt= f.label :description
+    %dd= f.text_area :description
+    
+    %dt= f.label :role
+    %dd= f.select :role, options_for_select(["developer", "graphic designer", "copy writer"], @website_person.role)
+    
+    %dt
+      = f.label :normal_picture
+      = image_tag(@website_person.normal_picture.url(:small))
+    %dd= f.file_field :normal_picture
+    
+    %dt
+      = f.label :slapped1_picture
+      = image_tag(@website_person.slapped1_picture.url(:small))
+    %dd= f.file_field :slapped1_picture
+  
+.actions= f.submit

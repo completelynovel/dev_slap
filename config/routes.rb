@@ -1,7 +1,7 @@
 
 DevSlap::Application.routes.draw do |map|
   resources :websites do
-    resources :people
+    resources :people, :controller => "websites/people"
     resource  :widget, :only => :show, :controller => "website_widget"
     resources :slappers, :only => :create, :controller => "website_slappers"
   end

@@ -1,0 +1,21 @@
+
+
+- content_for :title do
+  %h1 Add person
+  
+- content_for :main do
+  -#- if current_user.fellows.present?
+  -#  %p Pick a developer
+  -#  = form_for @website_person do |f|
+  -#    = f.error_messages
+  -#    = f.select :id, options_for_select(current_user.fellows.collect{|p| [p.email, p.id]}, :include_blank => true)
+  -#    = f.submit "add"
+  -#      
+  -#  
+  -#  %p or create a developer profile
+    
+  
+  
+  = form_for @website_person, :html => { :multipart => true }, :url => website_people_path(@website) do |f|
+    = render :partial => 'form', :locals => {:f => f}
+      

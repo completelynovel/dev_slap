@@ -11,26 +11,22 @@ class Person < ActiveRecord::Base
   
   
   def fellows
-    Person.find(:all, :include => :website_people, :conditions => ["website_people.website_id IN(?)", self.websites.collect{|ws| ws.id}])
+    Person.find(:all, :include => :website_people, :conditions => ["website_people.website_id IN(?) AND people.id != ?", self.websites.collect{|ws| ws.id}, self.id])
+  end
+  
+  def fellow_devlopers
+    WebsitePerson.find(:all, :include => :person, :conditions => ["website_people.website_id IN(?) AND people.id != ?", self.websites.collect{|ws| ws.id}, self.id])
   end
   
   # ------------------ Validations ---------------------
   # Most validations created by authlogic
   
-                                    
-  #validates_attachment_presence :normal_picture, :message => "please upload a picture to represent your competition"
-
-  # ------------------ Plugin Declarations -------------
-  has_attached_file :normal_picture,
-                    :styles => CONFIG['image_sizes']
   
-  #validates_attachment_content_type :normal_picture, :content_type => ['image/pjpeg', 'image/jpeg', 'image/jpg', 'x-application/JPG', 'image/gif', 'image/png'],
-  #                                  :message => "- please try another image - we can only use jpeg, jpg, gif or png."
+  def self.newpass( len = 10 )
+    chars = ("a".."z").to_a + ("A".."Z").to_a + ("0".."9").to_a
+    newpass = ""
+    1.upto(len) { |i| newpass << chars[rand(chars.size-1)] }
+    newpass
+  end
                                     
-                                    
-  has_attached_file :slapped1_picture, 
-                    :styles => CONFIG['image_sizes']
-  
-  #validates_attachment_content_type :slapped1_picture, :content_type => ['image/pjpeg', 'image/jpeg', 'image/jpg', 'x-application/JPG', 'image/gif', 'image/png'],
-  #                                  :message => "- please try another image - we can only use jpeg, jpg, gif or png."
 end

@@ -12,10 +12,7 @@
 ActiveRecord::Schema.define(:version => 20100402183055) do
 
   create_table "people", :force => true do |t|
-    t.string   "name"
     t.string   "email"
-    t.text     "description"
-    t.string   "role"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "password_salt"
@@ -30,14 +27,6 @@ ActiveRecord::Schema.define(:version => 20100402183055) do
     t.datetime "current_login_at"
     t.string   "current_login_ip"
     t.string   "last_login_ip"
-    t.string   "normal_picture_file_name"
-    t.string   "normal_picture_content_type"
-    t.integer  "normal_picture_file_size"
-    t.datetime "normal_picture_updated_at"
-    t.string   "slapped1_picture_file_name"
-    t.string   "slapped1_picture_content_type"
-    t.integer  "slapped1_picture_file_size"
-    t.datetime "slapped1_picture_updated_at"
   end
 
   create_table "person_session", :force => true do |t|
@@ -66,8 +55,19 @@ ActiveRecord::Schema.define(:version => 20100402183055) do
   end
 
   create_table "website_people", :force => true do |t|
-    t.integer "person_id"
-    t.integer "website_id"
+    t.integer  "person_id"
+    t.integer  "website_id"
+    t.string   "role"
+    t.text     "description"
+    t.string   "name"
+    t.string   "normal_picture_file_name"
+    t.string   "normal_picture_content_type"
+    t.integer  "normal_picture_file_size"
+    t.datetime "normal_picture_updated_at"
+    t.string   "slapped1_picture_file_name"
+    t.string   "slapped1_picture_content_type"
+    t.integer  "slapped1_picture_file_size"
+    t.datetime "slapped1_picture_updated_at"
   end
 
   add_index "website_people", ["person_id"], :name => "index_website_people_on_person_id"

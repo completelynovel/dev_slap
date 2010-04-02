@@ -1,11 +1,11 @@
-class WebsitePeopleController < BackendResourceController
+class Websites::PeopleController < BackendResourceController
   
   before_filter :set_website
   
   # GET /websites
   # GET /websites.xml
   def index
-    @people = @website.people
+    @website_people = @website.website_people
 
     respond_to do |format|
       format.html # index.html.erb
@@ -16,10 +16,10 @@ class WebsitePeopleController < BackendResourceController
   # GET /websites/1
   # GET /websites/1.xml
   def show
-    @person = @website.people.find(params[:id])
+    @person = @website.website_people.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html 
       format.xml  { render :xml => @website }
     end
   end
@@ -27,8 +27,9 @@ class WebsitePeopleController < BackendResourceController
   # GET /websites/new
   # GET /websites/new.xml
   def new
+    @website_person = WebsitePerson.new
     @person = Person.new
-
+    
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @website }
@@ -37,14 +38,25 @@ class WebsitePeopleController < BackendResourceController
 
   # GET /websites/1/edit
   def edit
-    @person = @website.people.find(params[:id])
+    @website_person = @website.website_people.find(params[:id])
+    @person = @website_person.person
   end
 
   # POST /websites
   # POST /websites.xml
   def create
-    @person = Person.new(params[:person])
-    @website.people << @person
+    @website_person = WebsitePerson.new(params[:website_person])
+    @website_person.website = @website
+    
+    @person = Person.find_by_email(params[:person][:email])
+    if @person.present?
+    else
+      @person = Person.new(params[:person])
+      password = Person.newpass
+      @person.password = @person.password_confirmation = password
+    end
+    @person.website_people << @website_person
+    
     respond_to do |format|
       if @person.save
         format.html { redirect_to(@website, :notice => 'Website was successfully created.') }
@@ -59,10 +71,12 @@ class WebsitePeopleController < BackendResourceController
   # PUT /websites/1
   # PUT /websites/1.xml
   def update
-    @website = Website.find(params[:id])
-
+    @website_person = WebsitePerson.find(params[:id])
+    @website_person.attributes = params[:website_person]
+    @person = @website_person.person
+    @person.website_people << @website_person
     respond_to do |format|
-      if @website.update_attributes(params[:website])
+      if @person.save
         format.html { redirect_to(@website, :notice => 'Website was successfully updated.') }
         format.xml  { head :ok }
       else
@@ -75,8 +89,8 @@ class WebsitePeopleController < BackendResourceController
   # DELETE /websites/1
   # DELETE /websites/1.xml
   def destroy
-    @website = Website.find(params[:id])
-    @website.destroy
+    @website_person = WebsitePerson.find(params[:id])
+    @website_person.destroy
 
     respond_to do |format|
       format.html { redirect_to(websites_url) }

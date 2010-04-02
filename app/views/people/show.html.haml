@@ -1,17 +1,12 @@
 
 - content_for :title do
-  %h1= @person.name
+  %h1= @person.email
 
 - content_for :main do
-  %h5 Description
-  %p= @person.description
-  
-  %h5 Role
-  %p= @person.role
-  
-  %p
-    = image_tag(@person.normal_picture.url)
-    = image_tag(@person.slapped1_picture.url)
+  %h5 Websites
+  %ul
+    - @person.websites.each do |website|
+      %li= link_to website.name, website_path(website)
   
   
   %p
