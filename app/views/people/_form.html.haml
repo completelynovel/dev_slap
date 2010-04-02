@@ -1,0 +1,25 @@
+= form_for @person, :html => { :multipart => true } do |f|
+  = f.error_messages
+  
+  %dl
+    - field_set_tag "Edit Person Profile" do
+      %dt= f.label :name
+      %dd= f.text_field :name
+      
+      %dt= f.label :description
+      %dd= f.text_area :description
+      
+      %dt= f.label :role
+      %dd= f.text_field :role
+      
+      %dt
+        = f.label :normal_picture
+        = image_tag(@person.normal_picture.url(:small))
+      %dd= f.file_field :normal_picture
+      
+      %dt
+        = f.label :slapped1_picture
+        = image_tag(@person.slapped1_picture.url(:small))
+      %dd= f.file_field :slapped1_picture
+    
+  .actions= f.submit

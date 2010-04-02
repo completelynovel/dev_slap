@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100402144859) do
+ActiveRecord::Schema.define(:version => 20100402151713) do
 
   create_table "people", :force => true do |t|
     t.string   "name"
@@ -46,6 +46,14 @@ ActiveRecord::Schema.define(:version => 20100402144859) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "website_people", :force => true do |t|
+    t.integer "person_id"
+    t.integer "website_id"
+  end
+
+  add_index "website_people", ["person_id"], :name => "index_website_people_on_person_id"
+  add_index "website_people", ["website_id"], :name => "index_website_people_on_website_id"
 
   create_table "websites", :force => true do |t|
     t.string   "url"

@@ -1,8 +1,17 @@
 default:
   site_name: DevSlap
+  image_sizes:
+    small: 50x50
+    large: 150x150
   
 development:
   site_url: http://localhost:3000
+  image_sizes:
+    small: 50x50
+    large: 150x150
   
 production:
   site_url: http://www.devslap.com
+  image_sizes:
+    small: 50x50
+    large: 150x150

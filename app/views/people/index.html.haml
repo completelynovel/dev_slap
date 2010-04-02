@@ -1,0 +1,22 @@
+- content_for :title do
+  %h1 Listing people
+
+- content_for :main do
+  %table
+    %thead
+      %tr
+        %th Name
+        %th Role
+        %th
+    %tbody
+      - @people.each do |person|
+        %tr
+          %td= person.name
+          %td= person.role
+          %td
+            = link_to 'Show', person 
+            = link_to 'Edit', edit_person_path(person)
+            = link_to 'Destroy', person, :confirm => 'Are you sure?', :method => :delete
+<br />
+
+= link_to 'New Person', new_person_path

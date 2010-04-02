@@ -1,0 +1,20 @@
+
+- content_for :title do
+  %h1= @person.name
+
+- content_for :main do
+  %h5 Description
+  %p= @person.description
+  
+  %h5 Role
+  %p= @person.role
+  
+  %p
+    = image_tag(@person.normal_picture.url)
+    = image_tag(@person.slapped1_picture.url)
+  
+  
+  %p
+    = link_to 'Edit', edit_person_path(@person)
+    \|
+    = link_to 'Back', people_path

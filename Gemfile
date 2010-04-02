@@ -8,6 +8,8 @@ gem 'mysql'
 gem 'haml'
 gem 'mongrel'
 gem "authlogic", :git => "git://github.com/odorcicd/authlogic.git", :branch => "rails3"
+#gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git", :branch => "rails3"
+gem 'paperclip', :git => 'git://github.com/JasonKing/paperclip.git', :branch => 'rails3'
 
 # Use unicorn as the web server
 # gem 'unicorn'
