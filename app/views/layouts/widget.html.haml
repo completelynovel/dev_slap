@@ -6,4 +6,19 @@
   = javascript_include_tag("widget")
   
   %body
-    = yield
+    #header
+      %p Oh dear. Something has gone wrong. Time to dish out some punishment...
+      %h1 Error 500
+      
+    #content
+      %p 
+        Take a look at the responsibilities of the web developers listed below and choose who you think is responsible for the error you just encountered. 
+        %br
+        You will have <strong>10 seconds</strong> to lay the smack down my friend. 
+        %br
+        When the timer runs out, you can submit your slaps and if you're feeling a little constructive, some feedback too.
+        
+      = yield
+      
+    #footer
+      %p Powered by DevSlap

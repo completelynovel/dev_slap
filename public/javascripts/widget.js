@@ -8,32 +8,18 @@ jQuery(document).ready(function(){
     slapped: $('#slapped')
   }
   
-  game.start.click(function(){
+  game.start.click(function(){    
+    enableSlapping();
+  });
+
+  enableSlapping = function(){
     game.start.hide();
     
     game.timer.show();
-    
     startTimer();
     
     game.info.show();
     
-    enableSlapping();
-  });
-  
-  startTimer = function(){
-    var start_time = 10;
-    
-    timer = setInterval(function(){
-      start_time = Math.round((start_time - 0.01) * 100) / 100;
-      game.timer.html(start_time + 'sec');
-      if (start_time <= 0){
-        clearInterval(timer);
-        disableSlapping();
-      }
-    }, 10);
-  };
-  
-  enableSlapping = function(){
     game.slapped.find('.picture_to_slap').click(function(){
       var self = $(this);
       var slapped = $(this).parents('li');
@@ -43,19 +29,36 @@ jQuery(document).ready(function(){
       // Increment slap counter
       counter.text(parseInt(counter.text()) + 1);
       
-      // 
-      slapped_picture.show();
+      // Show / hide slapped picture
       self.hide();
+      slapped_picture.show();
       
       setTimeout(function(){
-        slapped_picture.hide();
         self.show();
-      }, 100);
+        slapped_picture.hide();
+      }, 200);
     });
   };
   
   disableSlapping = function(){
     game.slapped.find('.picture_to_slap').unbind('click');
+    
+    game.info.hide();
+    
+    game.end.show();
+  };
+  
+  startTimer = function(){
+    var start_time = 10;
+    
+    timer = setInterval(function(){
+      start_time = Math.round((start_time - 0.01) * 100) / 100;
+      game.timer.find('span span').html(start_time);
+      if (start_time <= 0){
+        clearInterval(timer);
+        disableSlapping();
+      }
+    }, 10);
   };
   
 });

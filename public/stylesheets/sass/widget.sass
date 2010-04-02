@@ -1,16 +1,123 @@
+/* ---------------------------------- Vars
+!text_purple = #3d013c
+!text_blue   = #f6fcfe
+!blue        = #c1f9fb
+!purple      = #604880
+!mid_blue    = #7888bf
+!light_blue  = #f6fcfe
+
+!spacer      = 6px
+
+!font_size   = 13px
+!lfont_size  = 16px
+
+
+=rounding
+  :-webkit-border-radius = !spacer
+  :-moz-border-radius    = !spacer
+  
+  
+/* ---------------------------------- Helpers
+body
+  :margin 0
+  :padding 0
+  :font-family Georgia, Platino, serif
+  :font-size = !font_size
+  :background-color = !light_blue
+
+img
+  :border 0
+  
 .hide
   :display none
+
+.spacer
+  :clear both
+  :margin-bottom = !spacer * 2
+  
+
+/* ---------------------------------- Structure
+h1
+  :padding = (!spacer * 2) (!spacer * 4)
+  :color = !text_purple
+  
+p
+  :color = !text_purple
+
+a  
+  :text-decoration none
+  &:hover
+    :text-decoration underline
+  
+
+/* ---------------------------------- Structure
+#header, #content, #footer
+  :clear both
+  :width 760px
+  :margin 0 auto
+  :display block
+
+#header, #footer
+  :background-color = !blue
+  p
+    :float right
+    :padding = !spacer (!spacer * 2)
+
+  
+/* ---------------------------------- Content
+=big_button_style
+  +rounding
+  :padding = (!spacer * 2) (!spacer * 4)
+  :background-color = !purple
+  :color = !text_blue
+  :text-transform uppercase
+  :font-size = !lfont_size
+  
+#slapping_start
+  a 
+    :float right
+    +big_button_style
+    &:hover
+      :text-decoration none
+
+#slapping_info
+  :float right
+  +big_button_style
+  
+#slapping_timer
+  :float left
+  +big_button_style
+  :width 70px
+
+#slapping_end
   
 ul#slapped
+  :list-style none
   li
     :float left
     :margin 10px
     a.picture_to_slap
       img
-        :width 100px
-        :height 100px
+        +rounding
+        :width 150px
+        :height 150px
+        :border = 6px solid !purple
     a.slapped_picture
       :display none
       img
-        :width 100px
-        :height 100px
+        +rounding
+        :width 150px
+        :height 150px
+        :border = 6px solid !purple
+    span, a
+      :clear both
+      :display block
+      :text-align center
+    .slapped_name
+      :font-size = !lfont_size
+    .slapped_role
+      :font-weight bold
+    .slapped_counter
+      :padding = !spacer * 1
+      :border = 1px solid !purple
+    .slapped_description
