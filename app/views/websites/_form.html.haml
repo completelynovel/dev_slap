@@ -1,0 +1,17 @@
+= form_for(@website) do |f|
+  = f.error_messages
+  
+  %dl
+    - field_set_tag "Details" do
+      %dt= f.label :url
+      %dd= f.text_field :url
+      
+      %dt= f.label :name
+      %dd= f.text_field :name
+      
+      %dt= f.label :description
+      %dd= f.text_field :description
+      
+  
+
+  .actions= f.submit 

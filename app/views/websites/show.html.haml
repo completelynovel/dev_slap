@@ -1,0 +1,27 @@
+
+- content_for :title do
+  %h1= @website.name
+
+- content_for :main do
+  
+  %h5 Name
+  %p= @website.name
+  
+  %h5 Url
+  %p= @website.url
+  
+  %h5 Description
+  %p= @website.description
+  
+  %h5 Developers
+  %ul
+    - @website.people.each do |person|
+      %li= link_to person.name, person_path(person)
+      
+  = link_to "Add developer", new_website_person_path(@website)
+  
+  
+  %p
+    = link_to 'Edit', edit_website_path(@website)
+    \|
+    = link_to 'Back', website_path

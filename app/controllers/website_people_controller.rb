@@ -1,8 +1,11 @@
-class WebsitesController < BackendResourceController
+class WebsitePeopleController < BackendResourceController
+  
+  before_filter :set_website
+  
   # GET /websites
   # GET /websites.xml
   def index
-    @websites = Website.all
+    @people = @website.people
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +16,7 @@ class WebsitesController < BackendResourceController
   # GET /websites/1
   # GET /websites/1.xml
   def show
-    @website = Website.find(params[:id])
+    @person = @website.people.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -24,7 +27,7 @@ class WebsitesController < BackendResourceController
   # GET /websites/new
   # GET /websites/new.xml
   def new
-    @website = Website.new
+    @person = Person.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,16 +37,16 @@ class WebsitesController < BackendResourceController
 
   # GET /websites/1/edit
   def edit
-    @website = Website.find(params[:id])
+    @person = @website.people.find(params[:id])
   end
 
   # POST /websites
   # POST /websites.xml
   def create
-    @website = Website.new(params[:website])
-    @website.people << current_user
+    @person = Person.new(params[:person])
+    @website.people << @person
     respond_to do |format|
-      if @website.save
+      if @person.save
         format.html { redirect_to(@website, :notice => 'Website was successfully created.') }
         format.xml  { render :xml => @website, :status => :created, :location => @website }
       else
@@ -80,4 +83,9 @@ class WebsitesController < BackendResourceController
       format.xml  { head :ok }
     end
   end
+  
+  private
+    def set_website
+      @website = Website.find(params[:website_id])
+    end
 end

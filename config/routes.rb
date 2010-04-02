@@ -1,6 +1,8 @@
 
 DevSlap::Application.routes.draw do |map|
-  resources :websites
+  resources :websites do
+    resources :people
+  end
 
   resources :people
   
@@ -8,6 +10,7 @@ DevSlap::Application.routes.draw do |map|
   map.logout "logout", :controller => "person_sessions", :action => "destroy"
   map.signup "signup", :controller => "person_signups", :action => "new"
   map.person_signups "person_signups", :controller => "person_signups", :action => "create", :method => :post
+  map.dashboard "dashboard", :controller => "dashboard", :action => "show"
   
   resources :person_sessions
   

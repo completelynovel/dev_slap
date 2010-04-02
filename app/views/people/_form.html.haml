@@ -6,11 +6,21 @@
       %dt= f.label :name
       %dd= f.text_field :name
       
+      %dt= f.label :email
+      %dd= f.text_field :email
+      
+      %dt= f.label :password
+      %dd= f.password_field :password
+      
+      %dt= f.label :password_confirmation
+      %dd= f.password_field :password_confirmation
+      
+      
       %dt= f.label :description
       %dd= f.text_area :description
       
       %dt= f.label :role
-      %dd= f.text_field :role
+      %dd= f.select :role, options_for_select(["developer", "graphic designer", "copy writer"], @person.role)
       
       %dt
         = f.label :normal_picture

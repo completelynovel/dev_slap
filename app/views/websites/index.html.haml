@@ -1,0 +1,23 @@
+
+- content_for :title do
+  %h1 Listing websites
+
+- content_for :main do
+  %table
+    %thead
+      %tr
+        %th Name
+        %th Role
+        %th
+    %tbody
+      - @websites.each do |person|
+        %tr
+          %td= website.name
+          %td= website.url
+          %td
+            = link_to 'Show', website 
+            = link_to 'Edit', edit_website_path(website)
+            = link_to 'Destroy', website, :confirm => 'Are you sure?', :method => :delete
+<br />
+
+= link_to 'New Website', new_website_path

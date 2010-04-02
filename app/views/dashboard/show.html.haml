@@ -1,0 +1,17 @@
+- content_for :title do
+  %h1 Dashboard
+  
+- content_for :main do
+  %h2 Your Sites
+  %ul
+    - current_user.websites.each do |website|
+      %li= link_to(website.name, website_path(website))
+  .links= link_to("New", new_website_path)
+    
+  %h2 Your Developers
+  %ul
+    - current_user.fellows.each do |person|
+      %li= link_to(person.name, person_path(person))
+  .links= link_to("New", new_person_path)
+  
+  %h2 Your Settings

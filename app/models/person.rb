@@ -6,10 +6,13 @@ class Person < ActiveRecord::Base
   end
   
   # ----------------- Associations --------------------
+  has_many :website_people, :dependent => :destroy, :class_name => "WebsitePerson"
   has_many :websites, :through => :website_people
-  has_many :website_people, :as => :person
   
-  has_many :slaps
+  
+  def fellows
+    Person.find(:all, :include => :website_people, :conditions => ["website_people.website_id IN(?)", self.websites.collect{|ws| ws.id}])
+  end
   
   # ------------------ Validations ---------------------
   # Most validations created by authlogic

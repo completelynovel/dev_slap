@@ -1,0 +1,10 @@
+- content_for :title do
+  %h1 Add person
+  
+- content_for :main do
+  = form_for @person do |f|
+    %dl
+      %dt= f.label :person_id
+      %dd= f.select :person_id, options_for_select(current_user.fellows.collect{|p| [p.name, p.id]})
+    = f.submit "Save"
+      
