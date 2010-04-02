@@ -1,0 +1,19 @@
+- content_for :page_head do
+  = error_messages_for :person
+
+- content_for :title do
+  %h1 Welcome, please signup
+  
+- content_for :main do
+  - form_for @person, :url => person_signups_path do |f|
+    - field_set_tag "Signup" do
+      %dt= f.label :email
+      %dd= f.text_field :email
+      
+      %dt= f.label :password
+      %dt= f.password_field :password
+      
+      %dt= f.label :password_confirmation
+      %dt= f.password_field :password_confirmation
+      
+      = submit_tag "Signup"

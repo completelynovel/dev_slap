@@ -1,4 +1,4 @@
-class PeopleController < ApplicationController
+class PeopleController < BackendResourceController
   # GET /people
   # GET /people.xml
   def index

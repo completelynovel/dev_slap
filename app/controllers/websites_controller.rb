@@ -1,4 +1,4 @@
-class WebsitesController < ApplicationController
+class WebsitesController < BackendResourceController
   # GET /websites
   # GET /websites.xml
   def index

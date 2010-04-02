@@ -9,13 +9,40 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100402114733) do
+ActiveRecord::Schema.define(:version => 20100402144859) do
 
   create_table "people", :force => true do |t|
     t.string   "name"
     t.string   "email"
     t.text     "description"
     t.string   "role"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "password_salt"
+    t.string   "crypted_password"
+    t.string   "persistence_token"
+    t.string   "single_access_token"
+    t.string   "perishable_token"
+    t.integer  "login_count"
+    t.integer  "failed_login_count"
+    t.datetime "last_login_at"
+    t.datetime "last_request_at"
+    t.datetime "current_login_at"
+    t.string   "current_login_ip"
+    t.string   "last_login_ip"
+    t.string   "normal_picture_file_name"
+    t.string   "normal_picture_content_type"
+    t.integer  "normal_picture_file_size"
+    t.datetime "normal_picture_updated_at"
+    t.string   "slapped1_picture_file_name"
+    t.string   "slapped1_picture_content_type"
+    t.integer  "slapped1_picture_file_size"
+    t.datetime "slapped1_picture_updated_at"
+  end
+
+  create_table "person_session", :force => true do |t|
+    t.string   "session_id"
+    t.text     "data"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

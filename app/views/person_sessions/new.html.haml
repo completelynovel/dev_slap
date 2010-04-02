@@ -1,0 +1,18 @@
+- content_for :page_head do
+  = error_messages_for :person
+  
+- content_for :title do
+  %h1 Hello and welcome to devslap. Please login
+  
+- content_for :main do
+
+  - form_for @person_session do |f|
+    - field_set_tag "Sign In" do
+
+      %dt= f.label :email
+      %dd= f.text_field :email
+      
+      %dt= f.label :password
+      %dd= f.password_field :password
+    
+    = f.submit "Submit"
