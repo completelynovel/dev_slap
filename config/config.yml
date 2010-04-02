@@ -1,0 +1,8 @@
+default:
+  site_name: DevSlap
+  
+development:
+  site_url: http://localhost:3000
+  
+production:
+  site_url: http://www.devslap.com
