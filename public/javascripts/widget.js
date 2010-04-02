@@ -12,23 +12,24 @@ jQuery(document).ready(function(){
     game.start.hide();
     
     game.timer.show();
-    processTimer();
+    
+    startTimer();
     
     game.info.show();
     
     enableSlapping();
   });
   
-  var start_time = 10;
-  
-  processTimer = function(){
-    setTimeout(function(){
+  startTimer = function(){
+    var start_time = 10;
+    
+    timer = setInterval(function(){
       start_time = Math.round((start_time - 0.01) * 100) / 100;
       game.timer.html(start_time + 'sec');
-      if (start_time > 0) 
-        processTimer();
-      else
+      if (start_time <= 0){
+        clearInterval(timer);
         disableSlapping();
+      }
     }, 10);
   };
   
