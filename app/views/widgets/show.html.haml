@@ -1,1 +1,38 @@
-Hello widget
+%h1 Error 500
+
+%p Curabitur tempor molestie interdum. Proin volutpat hendrerit commodo. Aenean eu elit sit amet dui rhoncus congue. Mauris sollicitudin mattis ante, vitae gravida eros rutrum non. Ut ac justo eget odio varius dapibus. Sed vitae tellus risus. Aliquam bibendum iaculis quam, vulputate egestas eros rhoncus sed. Fusce ut nulla augue, vitae faucibus libero. Integer vel dolor ligula, et aliquet purus. Cras eget ipsum in massa iaculis consequat a placerat leo. Proin sapien lorem, pharetra quis dictum eu, dictum a felis. Sed vitae neque semper odio faucibus consequat nec sed odio. 
+
+%p
+  #slapping_start
+    = link_to("Start slapping now !", "javascript:void(0);")
+  
+  #slapping_timer
+    
+  #slapping_info
+    Slap now as much as you can and feel better !
+    
+  #slapping_end
+    Wonderful!
+    %br
+    Please now submit your score!
+    %br
+    -#widget_votes_path(@widget)
+    - form_tag "temp", :method => :post do
+      = label_tag :apology, "Get an apology"
+      = check_box_tag :apology, true, :checked => true
+      = label_tag :email, "Your email"
+      = text_field_tag :email
+      = submit_tag("Send because I'm angry!")
+
+%ul#slapped
+  - @people.each do |person|
+    %li
+      %span.slapped_name= person.name
+      %span.slapped_role= person.role
+      = link_to(image_tag("http://xtrmweb.com/wp-content/uploads/10-REALITY_SLAP_L.jpg"), "javascript:void(0);", :class => :picture_to_slap)
+      = link_to(image_tag("http://unrepentantoldhippie.files.wordpress.com/2008/12/slap-logo1.jpg"), "javascript:void(0);", :class => :slapped_picture)
+      %span.slapped_counter 0
+      %span.slapped_description= person.description
+      
+      
+  

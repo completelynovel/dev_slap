@@ -10,6 +10,11 @@ DevSlap::Application.routes.draw do |map|
   map.person_signups "person_signups", :controller => "person_signups", :action => "create", :method => :post
   
   resources :person_sessions
+  
+  resources :widgets, :only => :show do
+    resources :votes, :controller => "widget_votes"
+  end
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
